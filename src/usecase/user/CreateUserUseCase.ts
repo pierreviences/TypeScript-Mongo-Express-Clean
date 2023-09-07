@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import UserRepository from "../../infrastructure/database/UserRepository";
+import UserRepository from "../../infrastructure/repository/UserRepository";
 
 export class CreateUserUseCase {
   constructor(private userRepository: UserRepository) {}
