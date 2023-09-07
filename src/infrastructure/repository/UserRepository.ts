@@ -1,7 +1,7 @@
-// UserRepository.ts
 import { InsertOneResult } from "mongodb";
 import { User } from "../../entities/User";
 import { Database } from "../database/db";
+import { ObjectId } from "mongodb";
 
 class UserRepository {
   private db: Database;

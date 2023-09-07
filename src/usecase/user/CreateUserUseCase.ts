@@ -1,15 +1,16 @@
 import { User } from "../../entities/User";
 import UserRepository from "../../infrastructure/repository/UserRepository";
+import { validateNameAndEmail } from "../../util/validator";
 
 export class CreateUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(name: string, email: string) {
-    if (!name || !email) {
-      return {
-        success: false,
-        error: "Name and email are required",
-      };
+    const validation = validateNameAndEmail(name, email);
+
+    if (!validation.success) {
+      console.log(validation);
+      return validation;
     }
 
     const user = new User(name, email);
