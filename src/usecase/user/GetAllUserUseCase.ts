@@ -1,10 +1,10 @@
-import UserRepository from "../../infrastructure/repository/UserRepository";
+import UserRepository from "../../infrastructure/repository/UserRepositoryImpl";
 
 export class GetAllUsersUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute() {
-    const users = await this.userRepository.getAllUsers();
-    return { success: true, users };
+    const data = await this.userRepository.getAllUsers();
+    return { success: true, data };
   }
 }

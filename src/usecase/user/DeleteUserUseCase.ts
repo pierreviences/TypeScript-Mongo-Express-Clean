@@ -1,4 +1,4 @@
-import UserRepository from "../../infrastructure/repository/UserRepository";
+import UserRepository from "../../infrastructure/repository/UserRepositoryImpl";
 import { validateUserId } from "../../util/validator";
 
 export class DeleteUserUseCase {

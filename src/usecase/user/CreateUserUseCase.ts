@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import UserRepository from "../../infrastructure/repository/UserRepository";
+import UserRepository from "../../infrastructure/repository/UserRepositoryImpl";
 import { validateNameAndEmail } from "../../util/validator";
 
 export class CreateUserUseCase {
