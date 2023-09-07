@@ -34,6 +34,21 @@ class UserRepository {
     }
   }
 
+  async updateById(id: string, updates: Partial<User>): Promise<boolean> {
+    try {
+      await this.db.connected();
+      const usersCollection = this.db.getUsersCollection();
+      const result = await usersCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updates }
+      );
+      return result.modifiedCount > 0;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
+  }
+
   async closeDatabase() {
     await this.db.close();
   }
