@@ -77,7 +77,7 @@ export class UserController {
       const userId = req.params.id;
       const userResponse = await this.deleteUserUseCase.execute(userId);
       if (userResponse.success) {
-        res.status(204).send();
+        res.status(200).json(userResponse);
       } else {
         res.status(404).json(userResponse);
       }

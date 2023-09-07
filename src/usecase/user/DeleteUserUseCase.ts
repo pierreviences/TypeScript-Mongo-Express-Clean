@@ -15,6 +15,6 @@ export class DeleteUserUseCase {
       return { success: false, error: "User not found" };
     }
 
-    return { success: true };
+    return { success: true, deleted };
   }
 }

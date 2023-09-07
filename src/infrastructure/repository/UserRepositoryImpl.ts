@@ -62,12 +62,12 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
-  async deleteById(id: string): Promise<boolean> {
+  async deleteById(id: string) {
     try {
       await this.db.connected();
       const usersCollection = this.db.getUsersCollection();
       const result = await usersCollection.deleteOne({ _id: new ObjectId(id) });
-      return result.deletedCount > 0;
+      return result;
     } catch (error) {
       console.error("Error deleting user:", error);
       throw error;
