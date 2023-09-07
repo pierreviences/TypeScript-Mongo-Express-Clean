@@ -49,6 +49,30 @@ class UserRepository {
     }
   }
 
+  async getAllUsers(): Promise<User[]> {
+    try {
+      await this.db.connected();
+      const usersCollection = this.db.getUsersCollection();
+      const users = await usersCollection.find({}).toArray();
+      return users;
+    } catch (error) {
+      console.error("Error getting all users:", error);
+      throw error;
+    }
+  }
+
+  async deleteById(id: string): Promise<boolean> {
+    try {
+      await this.db.connected();
+      const usersCollection = this.db.getUsersCollection();
+      const result = await usersCollection.deleteOne({ _id: new ObjectId(id) });
+      return result.deletedCount > 0;
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
+    }
+  }
+
   async closeDatabase() {
     await this.db.close();
   }
