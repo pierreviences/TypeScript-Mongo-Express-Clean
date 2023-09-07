@@ -1,9 +1,14 @@
 import UserRepository from "../../infrastructure/repository/UserRepository";
+import { validateUserId } from "../../util/validator";
 
 export class DeleteUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(userId: string) {
+    const userIdValidation = validateUserId(userId);
+    if (!userIdValidation.success) {
+      return userIdValidation;
+    }
     const deleted = await this.userRepository.deleteById(userId);
 
     if (!deleted) {
